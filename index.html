@@ -3,32 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PV-PP Agent Auditor | PV-PP Audit Tool for AI Agent Environments</title>
+<title>PV-PP Agent Auditor | Interactive Demo for AI Agent Governance</title>
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: #f4f6f8;
   color: #222;
 }
 
 .wrapper {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 50px 28px 70px;
 }
 
-.hero {
-  background: white;
+.hero, .card, .demo-panel {
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 16px;
-  padding: 42px;
   box-shadow: 0 10px 24px rgba(0,0,0,.05);
+}
+
+.hero {
+  padding: 42px;
 }
 
 h1 {
@@ -37,11 +37,21 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 1.35rem;
+}
+
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1.22rem;
   color: #555;
   margin-bottom: 24px;
-  max-width: 900px;
+  max-width: 920px;
 }
 
 p {
@@ -66,13 +76,10 @@ p {
   font-weight: bold;
 }
 
-.buttons a.sample {
-  background: #2f4f6f;
-}
-
-.buttons a.secondary {
-  background: #666;
-}
+.buttons a.sample { background: #2f4f6f; }
+.buttons a.secondary { background: #666; }
+.buttons a.demo { background: #195c46; }
+.buttons a.disabled { background: #999; cursor: not-allowed; }
 
 .section {
   margin-top: 34px;
@@ -85,20 +92,11 @@ p {
   margin-top: 18px;
 }
 
-.card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 14px;
+.card, .demo-panel {
   padding: 24px;
 }
 
-.card h3 {
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 1.35rem;
-}
-
-ul {
+ul, ol {
   padding-left: 22px;
   line-height: 1.7;
 }
@@ -111,9 +109,15 @@ ul {
   padding: 18px 20px;
 }
 
-.note strong {
-  display: block;
-  margin-bottom: 6px;
+.warning {
+  background: #fff7e8;
+  border: 1px solid #efd49a;
+}
+
+.step {
+  border-left: 4px solid #195c46;
+  padding-left: 16px;
+  margin: 18px 0;
 }
 
 footer {
@@ -125,17 +129,11 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+  .grid { grid-template-columns: 1fr; }
 
-  h1 {
-    font-size: 2.3rem;
-  }
+  h1 { font-size: 2.3rem; }
 
-  .hero {
-    padding: 28px;
-  }
+  .hero { padding: 28px; }
 
   .buttons {
     display: block;
@@ -157,30 +155,69 @@ footer {
     <h1>PV-PP Agent Auditor</h1>
 
     <div class="subtitle">
-      A Productive Value-Productive Power (PV-PP) based audit tool for reviewing AI agents before they are expanded, automated, or relied on.
+      A structured audit tool for reviewing AI agents, custom GPTs, workflows, and tool-using automation before they are expanded, delegated authority, or relied on in higher-risk settings.
     </div>
 
     <p>
-      The PV-PP Agent Auditor is a custom GPT built on the Productive Value-Productive Power (PV-PP) framework. It helps users examine an AI agent environment by looking at what the agent is supposed to do, what information it uses, what tools and permissions it has, and where its apparent capability may exceed what the surrounding system can safely support.
+      The PV-PP Agent Auditor helps identify gaps between what an AI agent appears able to do and what its surrounding workflow can actually support safely, reliably, and recoverably.
     </p>
 
     <p>
-      The auditor does not certify an agent as safe. It helps surface hidden risks involving tools, memory, permissions, stale information, feedback loops, escalation paths, recovery structure, and false confidence before the agent is expanded or placed into heavier use.
-    </p>
-
-    <p>
-      A sample audit report is available so users can review the kind of output the auditor produces before running it. The sample shows how the auditor identifies hidden assumptions, weak control points, false-success risks, authority-boundary problems, and agent-governance gaps.
+      It reviews purpose, users, tools, permissions, information sources, decisions, failure impact, feedback loops, escalation paths, and weak points. It does not certify safety. It surfaces risks, hidden assumptions, false-success patterns, and missing recovery corridors.
     </p>
 
     <div class="buttons">
       <a href="https://chatgpt.com/g/g-69c115a5b5a081918bb89c23f6b20446-pv-pp-agent-decision-engine/" target="_blank">Run the Auditor</a>
-      <a class="sample" href="https://amundsenlance.github.io/Sample-PV-PP-Agent-Auditor-Report/" target="_blank">Read Sample Report</a>
+      <a class="demo" href="#northbridge-demo">Try the Northbridge Demo</a>
+      <a class="sample" href="PV-PP%20Agent%20Audit%20Report.md" target="_blank" rel="noopener">Read Generated Sample Report</a>
       <a class="secondary" href="https://amundsenlance.github.io/" target="_blank">Main Research Hub</a>
     </div>
 
-    <div class="note">
-      <strong>Use case:</strong>
-      First-pass review of an AI agent, workflow, automation, or tool-using system before it is expanded, delegated more authority, or relied on in a higher-risk setting.
+    <div class="note warning">
+      <strong>Why a demo case?</strong>
+      Many organizations will not upload proprietary workflows, prompts, policy files, customer data, or internal control documents just to test a new audit tool. The Northbridge demo uses fictional company materials so users can experience the audit process without exposing sensitive information.
+    </div>
+  </div>
+
+  <div id="northbridge-demo" class="section demo-panel">
+    <h2>Interactive Demo: Northbridge AI Agent Audit</h2>
+
+    <p>
+      Northbridge is a fictional company with a fictional AI agent environment. The demo lets you download sample materials, re-upload them into the auditor, answer the intake questions, and generate a realistic audit report.
+    </p>
+
+    <div class="step">
+      <h3>Step 1 — Download the sample materials</h3>
+      <p>
+        These files represent a fictional agent workflow, operating rules, tool permissions, escalation process, and one sample agent record.
+      </p>
+      <div class="buttons">
+        <a href="Northbridge_Agent_Overview.md" download>Download Northbridge Agent Overview</a>
+        <a href="Northbridge_Tool_and_Permission_Rules.md" download>Download Tool & Permission Rules</a>
+        <a href="Northbridge_Escalation_SOP.md" download>Download Escalation SOP</a>
+        <a href="Northbridge_Sample_Agent_Record.md" download>Download Sample Agent Record</a>
+        <a class="demo" href="Northbridge_PV-PP_Agent_Auditor_Demo_Pack_v0_1.zip" download>Download Full Demo Pack</a>
+      </div>
+    </div>
+
+    <div class="step">
+      <h3>Step 2 — Upload the files to the auditor</h3>
+      <p>
+        Open the PV-PP Agent Auditor, upload the Northbridge files, and ask it to run the audit. The auditor will inspect the documents first, then ask only the remaining questions needed to complete the assessment.
+      </p>
+      <div class="buttons">
+        <a href="https://chatgpt.com/g/g-69c115a5b5a081918bb89c23f6b20446-pv-pp-agent-decision-engine/" target="_blank">Open Auditor</a>
+      </div>
+    </div>
+
+    <div class="step">
+      <h3>Step 3 — Generate or view the report</h3>
+      <p>
+        The generated report should show how the auditor identifies PP vs PPP gaps, exposed governing domains, tool and permission risks, memory/retrieval risks, weak escalation corridors, false-success patterns, and practical recommendations.
+      </p>
+      <div class="buttons">
+        <a class="sample" href="PV-PP%20Agent%20Audit%20Report.md" target="_blank" rel="noopener">View Sample Output</a>
+      </div>
     </div>
   </div>
 
@@ -190,24 +227,52 @@ footer {
       <div class="card">
         <h3>What It Audits</h3>
         <ul>
-          <li>Agent purpose, scope, and operating environment</li>
-          <li>Tools, APIs, permissions, and execution authority</li>
-          <li>Memory, stored context, retrieval assumptions, and stale-state risks</li>
-          <li>Input quality, missing information, and false-confidence points</li>
-          <li>Decision surfaces where the agent may act from an incomplete model</li>
-          <li>Feedback loops, monitoring, escalation paths, and recovery options</li>
-          <li>Failure modes involving overreach, unsafe automation, or hidden dependency</li>
+          <li>Agent purpose, scope, and intended outputs</li>
+          <li>Users, affected parties, and downstream reliance</li>
+          <li>Tools, APIs, files, accounts, and permissions</li>
+          <li>Memory, retrieval, stored context, and stale-state risks</li>
+          <li>Decisions, recommendations, classifications, and actions</li>
+          <li>Feedback, correction, oversight, escalation, and rollback</li>
+          <li>False-success risks where visible task completion improves while hidden risk increases</li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Why It Matters</h3>
         <p>
-          Agent systems can look capable because they produce fluent answers or trigger tools. That does not mean they understand their operating environment, know when information is stale, or have enough feedback to recover from error.
+          Agent systems can look capable because they produce fluent answers, classify cases, or trigger tools. That does not mean they understand authority boundaries, stale information, missing evidence, downstream reliance, or recovery needs.
         </p>
         <p>
-          The auditor focuses on the gap between apparent capability and supported capability: where an agent may seem ready to act, but the surrounding workflow, permissions, evidence, oversight, or recovery structure does not actually support safe operation.
+          The auditor focuses on the gap between apparent capability and supported capability: where an agent may seem ready to act, but the surrounding workflow, permissions, evidence, oversight, or recovery structure does not actually support unsupervised use.
         </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="grid">
+
+      <div class="card">
+        <h3>Best First Uses</h3>
+        <ul>
+          <li>Reviewing a custom GPT before broader internal use</li>
+          <li>Testing an agent workflow before adding tool permissions</li>
+          <li>Checking whether a human-in-the-loop process is real or only formal</li>
+          <li>Finding weak escalation, rollback, logging, or review paths</li>
+          <li>Preparing a pilot risk review before deployment</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>What It Does Not Do</h3>
+        <ul>
+          <li>It does not certify an agent as safe</li>
+          <li>It does not verify production systems directly</li>
+          <li>It does not replace legal, security, compliance, medical, or financial review</li>
+          <li>It does not prove that an agent is ready for unsupervised execution</li>
+          <li>It gives a structured risk interpretation based on supplied materials</li>
+        </ul>
       </div>
 
     </div>
@@ -216,6 +281,11 @@ footer {
   <footer>
     Maintained by Lance Amundsen. Published with GitHub Pages.
   </footer>
+
+</div>
+</body>
+</html>
+
 
 </div>
 </body>
